@@ -26,11 +26,11 @@ def page_post_upload():
     picture = request.files.get('pic')
     if picture and content:
         if is_filename_allowed(picture.filename):
-            new_post['pic'] = picture.filename
+            new_post['pic'] = '/uploads/images/' + picture.filename
             new_post['content'] = content
             append_post_to_data(new_post)
             picture.save(f'./uploads/images/{picture.filename}')
-            return render_template('post_uploaded.html', post=new_post)
+            return render_template('post_uploaded.html', post=picture.filename)
         else:
             logger_info.info(f'Была попытка загрузить файл с расширением {picture.filename.split(".")[-1]}')
             return 'Неверный формат изображения'

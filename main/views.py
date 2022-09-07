@@ -24,3 +24,4 @@ def search_page():
     posts = search_post_by_user_words(s)
     logging.info(f'Был произведен поиск по слову {s}')
     return render_template('post_list.html', list_of_posts=posts, user_search=s)
+
